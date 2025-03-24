@@ -1,18 +1,11 @@
-import Cabecalho from './componentes/Cabecalho';
-import Rodape from './componentes/Rodape';
 import './App.css';
-import Login from './paginas/Login';
-import Cadastro from './paginas/Cadastro';
+import Rotas from './Rotas';
 
 function App() {
   return (
-    <>
-      
-
-      <Cadastro/>
-
-      
-    </>
+    
+      <Rotas />
+    
   );
 }
 
