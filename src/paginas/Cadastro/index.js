@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Cabecalho from "../../componentes/Cabecalho";
 import Rodape from "../../componentes/Rodape";
 import { UF } from "../../constantes/ufs";
+import { obterEndereco } from "../../servicos/api";
 
 function Cadastro() {
     const [nome, setNome] = useState("");
@@ -17,6 +18,17 @@ function Cadastro() {
     const [cidade, setCidade] = useState("");
     const [uf, setUf] = useState("");
     const [complemento, setComplemento] = useState("");
+    const [exibirModal , setExibirmodal] = useState(false);
+
+    //arrow function
+    //executar uma funcao chamado de callback toda vez que o componente for mudado ou modificiado o estado
+    useEffect(() =>{
+        // console.log("tamanho do cep: " + cep.length);
+        if(cep.length === 9){
+            //chamar a api da via cep
+            obterEndereco(cep, setLogradouro , setBairro , setCidade , setUf);
+         }
+    }, [cep]);
 
     return (
         <>

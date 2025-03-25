@@ -1,6 +1,6 @@
 function Alerta({ texto }){
     return(
-        <div className="aleret alert-warning" role="alert">
+        <div className="alert alert-warning" role="alert">
             { texto }
 
         </div>

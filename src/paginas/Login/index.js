@@ -1,8 +1,11 @@
 import { useState } from "react";
 import logo from "../../assets/treina_recife_logo.png";
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
+     const navegate = useNavigate();
+
     const[email,setemail] = useState("pedro@email.com");
     const[senha,setsenha] = useState("123");
     const[manterConectado , setmanterConcectado] = useState(true);
@@ -10,7 +13,15 @@ function Login() {
     const efetuarLogin = (e) => {
         e.preventDefault ();
 
-        console.log({ email, senha, manterConectado });
+       const dadosUsuario =  { email, senha, manterConectado };
+        //todo : chamanda da api de autenticacao.
+
+       if (manterConectado){
+        localStorage.setItem("usuarioLogado",JSON.stringify(dadosUsuario));
+       }
+        sessionStorage.setItem("usuarioLogado",JSON.stringify(dadosUsuario));
+       
+        navegate("/cadastro");        
     }
 
     return (
@@ -29,9 +40,7 @@ function Login() {
                             aria-describedby="emailHelp"
                             value={email}
                             onChange={(e) => setemail(e.target.value)}
-                        />
-
-                            <div id="emailHelp" className="form-text">Você não deve compartilhar sua senha.</div>
+                        />                           
                     </div>
                     <div className="mb-3">
                         <label htmlFor="exampleInputPassword1" className="form-label">Senha</label>
@@ -43,6 +52,7 @@ function Login() {
                             onChange={(e) => setsenha(e.target.value)}
 
                         />
+                         <div id="emailHelp" className="form-text">Você não deve compartilhar sua senha.</div>
                     </div>
                     <div className="mb-3 form-check">
                         <input 
