@@ -10,7 +10,7 @@ function Cadastro() {
     const [cpf, setCpf] = useState("");
     const [email, setEmail] = useState("");
     const [senha, setSenha] = useState("");
-    const [dataNascimento, setDataNascimento] = useState();
+    const [dataNascimento, setDataNascimento] = useState("");
     const [status, setStatus] = useState("");
     const [cep, setCep] = useState("");
     const [logradouro, setLogradouro] = useState("");
