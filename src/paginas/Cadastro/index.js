@@ -3,6 +3,7 @@ import Cabecalho from "../../componentes/Cabecalho";
 import Rodape from "../../componentes/Rodape";
 import { UF } from "../../constantes/ufs";
 import { obterEndereco } from "../../servicos/api";
+import Modal from "../../Modal";
 
 function Cadastro() {
     const [nome, setNome] = useState("");
@@ -30,12 +31,28 @@ function Cadastro() {
          }
     }, [cep]);
 
+    const cadastrarAluno = (e) => {
+        e.preventDefault();
+        setExibirmodal(true);
+    }
+
     return (
         <>
+
             <Cabecalho />
+
+            { exibirModal &&  
+                        <Modal
+                        titulo={"Confirmação de cadastro"} 
+                        texto={"aluno cadastrado com sucesso!"}  
+                        textobotao1="ok"
+                        onClickBotao1={() =>{setExibirmodal(false)}}  
+
+                        />}
+
             <section className='container mt-3' id="formulario">
                 <h1 className='text-dark'>Cadastro de Aluno</h1>
-                <form className="row g-3">
+                <form className="row g-3" onSubmit={cadastrarAluno}>
                     <div className="col-md-4 col-12">
                         <label htmlFor="nome" className="form-label">Nome</label>
                         <input
